@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cedar Ridge LLC | Wildland Fire Engines & FireWise Services</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;600;700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black:     #0a0c0b;
+    --deep:      #111410;
+    --forest:    #16231a;
+    --olive:     #2a3320;
+    --ember:     #d4521a;
+    --flame:     #e8762e;
+    --gold:      #f0b429;
+    --sage:      #5e7a5a;
+    --cream:     #f2ead8;
+    --parchment: #e8ddc8;
+    --smoke:     #9a9282;
+    --white:     #fdfaf5;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    background: var(--black);
+    color: var(--cream);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(10,12,11,0.96);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(212,82,26,0.25);
+    padding: 0 48px;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 68px;
+  }
+  .nav-brand { display: flex; align-items: center; gap: 14px; }
+  .nav-logo-ring {
+    width: 42px; height: 42px;
+    border: 2px solid var(--ember); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem; flex-shrink: 0;
+  }
+  .nav-logo {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.2rem; font-weight: 700;
+    color: var(--white); text-transform: uppercase; letter-spacing: 0.06em; line-height: 1.1;
+  }
+  .nav-logo small {
+    display: block; font-size: 0.55rem; letter-spacing: 0.2em;
+    color: var(--ember); font-weight: 400;
+  }
+  .nav-links { display: flex; gap: 28px; list-style: none; }
+  .nav-links a {
+    font-family: 'Space Mono', monospace; font-size: 0.65rem;
+    text-transform: uppercase; letter-spacing: 0.12em;
+    color: var(--smoke); text-decoration: none; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--flame); }
+  .nav-phone {
+    font-family: 'Space Mono', monospace; font-size: 0.68rem;
+    color: var(--cream); text-decoration: none;
+    border: 1px solid rgba(212,82,26,0.5);
+    padding: 8px 16px; border-radius: 2px; transition: all 0.2s; letter-spacing: 0.05em;
+  }
+  .nav-phone:hover { background: var(--ember); border-color: var(--ember); }
+  .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
+  .hamburger span { display: block; width: 24px; height: 2px; background: var(--cream); }
+
+  /* HERO */
+  #home {
+    min-height: 100vh;
+    background:
+      linear-gradient(to bottom, rgba(10,12,11,0.7) 0%, rgba(180,60,20,0.15) 40%, rgba(10,12,11,0.95) 100%),
+      url('images/hero-sunset-engine.jpg') center/cover no-repeat;
+    display: flex; align-items: center;
+    padding: 130px 80px 130px;
+    position: relative;
+  }
+  .hero-inner { max-width: 760px; }
+  .hero-eyebrow {
+    display: flex; align-items: center; gap: 14px; margin-bottom: 28px;
+    animation: fadeUp 0.7s ease both;
+  }
+  .hero-eyebrow-line { width: 40px; height: 2px; background: var(--ember); }
+  .hero-eyebrow-text {
+    font-family: 'Space Mono', monospace; font-size: 0.65rem;
+    text-transform: uppercase; letter-spacing: 0.2em; color: var(--flame);
+  }
+  h1.hero-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: clamp(3.5rem, 8vw, 7.5rem);
+    font-weight: 700; line-height: 0.95;
+    text-transform: uppercase; letter-spacing: -0.01em;
+    margin-bottom: 32px;
+    animation: fadeUp 0.7s 0.12s ease both;
+  }
+  h1.hero-title em { color: var(--flame); font-style: normal; display: block; }
+  .hero-sub {
+    font-size: 1.2rem; font-weight: 300; max-width: 520px;
+    color: var(--parchment); line-height: 1.7; margin-bottom: 44px;
+    animation: fadeUp 0.7s 0.24s ease both;
+  }
+  .hero-btns {
+    display: flex; gap: 14px; flex-wrap: wrap;
+    animation: fadeUp 0.7s 0.36s ease both;
+  }
+  .btn-primary {
+    background: var(--ember); color: var(--white);
+    padding: 15px 30px; font-family: 'Space Mono', monospace; font-size: 0.7rem;
+    text-transform: uppercase; letter-spacing: 0.12em;
+    text-decoration: none; border-radius: 1px; transition: all 0.2s; border: 1px solid var(--ember);
+  }
+  .btn-primary:hover { background: var(--flame); border-color: var(--flame); transform: translateY(-2px); }
+  .btn-outline {
+    border: 1px solid rgba(242,234,216,0.4); color: var(--cream);
+    padding: 15px 30px; font-family: 'Space Mono', monospace; font-size: 0.7rem;
+    text-transform: uppercase; letter-spacing: 0.12em;
+    text-decoration: none; border-radius: 1px; transition: all 0.2s;
+  }
+  .btn-outline:hover { border-color: var(--flame); color: var(--flame); transform: translateY(-2px); }
+
+  .hero-stats {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    background: rgba(10,12,11,0.92);
+    border-top: 1px solid rgba(212,82,26,0.2);
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    animation: fadeUp 0.7s 0.5s ease both;
+  }
+  .hero-stat {
+    padding: 22px 40px;
+    border-right: 1px solid rgba(255,255,255,0.06);
+  }
+  .hero-stat:last-child { border-right: none; }
+  .hero-stat-num {
+    font-family: 'Oswald', sans-serif; font-size: 2rem; font-weight: 700;
+    color: var(--flame); line-height: 1; margin-bottom: 4px;
+  }
+  .hero-stat-label {
+    font-family: 'Space Mono', monospace; font-size: 0.58rem;
+    text-transform: uppercase; letter-spacing: 0.14em; color: var(--smoke);
+  }
+
+  /* SHARED SECTION STYLES */
+  section { padding: 100px 80px; }
+  .eyebrow { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
+  .eyebrow-line { width: 32px; height: 2px; background: var(--ember); flex-shrink: 0; }
+  .eyebrow-text {
+    font-family: 'Space Mono', monospace; font-size: 0.62rem;
+    text-transform: uppercase; letter-spacing: 0.18em; color: var(--ember);
+  }
+  h2.stitle {
+    font-family: 'Oswald', sans-serif;
+    font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.02em; line-height: 1.05; margin-bottom: 20px;
+  }
+  h2.stitle em { color: var(--flame); font-style: normal; }
+  .divider {
+    width: 48px; height: 3px;
+    background: linear-gradient(90deg, var(--ember), var(--flame));
+    margin: 16px 0 36px;
+  }
+  p { font-size: 1.1rem; line-height: 1.8; color: var(--parchment); }
+  strong { color: var(--white); }
+
+  /* ABOUT */
+  #about { background: var(--forest); display: grid; grid-template-columns: 5fr 6fr; gap: 80px; align-items: center; }
+  .about-img-wrap { position: relative; }
+  .about-img-frame { border-radius: 2px; overflow: hidden; aspect-ratio: 3/4; position: relative; }
+  .about-img-frame img { width: 100%; height: 100%; object-fit: cover; filter: saturate(0.7) contrast(1.1); }
+  .about-img-frame::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(180deg, transparent 55%, rgba(10,12,11,0.65));
+  }
+  .about-img-wrap::before {
+    content: ''; position: absolute; top: -12px; left: -12px; right: 12px; bottom: 12px;
+    border: 2px solid rgba(212,82,26,0.3); border-radius: 2px; pointer-events: none; z-index: -1;
+  }
+  .about-badge {
+    position: absolute; bottom: 20px; left: 20px; right: 20px;
+    background: var(--black); border-left: 3px solid var(--flame); padding: 14px 18px; z-index: 2;
+  }
+  .about-badge-name {
+    font-family: 'Oswald', sans-serif; font-size: 1.4rem; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.04em; color: var(--white); margin-bottom: 2px;
+  }
+  .about-badge-title { font-family: 'Space Mono', monospace; font-size: 0.58rem; text-transform: uppercase; letter-spacing: 0.14em; color: var(--smoke); }
+  .about-content p { margin-bottom: 18px; }
+  .about-feats { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 32px; }
+  .about-feat { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07); padding: 16px 18px; border-radius: 2px; }
+  .about-feat-icon { font-size: 1.3rem; margin-bottom: 6px; }
+  .about-feat-label { font-family: 'Space Mono', monospace; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--flame); margin-bottom: 4px; }
+  .about-feat p { font-size: 0.88rem; color: var(--smoke); margin: 0; line-height: 1.5; }
+
+  /* SERVICES */
+  #services { background: var(--deep); }
+  .services-intro { max-width: 600px; margin-bottom: 56px; }
+  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+  .scard { background: var(--forest); overflow: hidden; transition: background 0.25s; }
+  .scard:hover { background: var(--olive); }
+  .scard-img { height: 190px; overflow: hidden; position: relative; }
+  .scard-img img { width: 100%; height: 100%; object-fit: cover; filter: saturate(0.6) brightness(0.7); transition: transform 0.4s, filter 0.4s; }
+  .scard:hover .scard-img img { transform: scale(1.04); filter: saturate(0.8) brightness(0.8); }
+  .stag {
+    position: absolute; top: 14px; right: 14px; z-index: 1;
+    font-family: 'Space Mono', monospace; font-size: 0.55rem;
+    text-transform: uppercase; letter-spacing: 0.12em; padding: 4px 10px; border-radius: 1px;
+  }
+  .tag-core { background: var(--ember); color: white; }
+  .tag-new  { background: var(--gold);  color: var(--black); }
+  .tag-comm { background: var(--sage);  color: white; }
+  .scard-body { padding: 24px 26px; }
+  .scard-icon { font-size: 1.6rem; margin-bottom: 10px; }
+  .scard-title {
+    font-family: 'Oswald', sans-serif; font-size: 1.25rem; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 8px; color: var(--white);
+  }
+  .scard-body p { font-size: 0.95rem; color: var(--smoke); line-height: 1.65; margin: 0; }
+
+  /* FIREWISE */
+  #firewise { background: linear-gradient(170deg, #131a0f 0%, #200e04 55%, #111408 100%); position: relative; overflow: hidden; }
+  .fw-intro { max-width: 640px; margin-bottom: 64px; }
+  .fw-intro p { font-size: 1.12rem; }
+  .zones-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 60px; }
+  .zone-card { background: rgba(10,12,11,0.6); border: 1px solid rgba(255,255,255,0.07); border-radius: 2px; overflow: hidden; }
+  .zone-head { padding: 20px 22px; display: flex; align-items: flex-start; gap: 14px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .zone-num { font-family: 'Oswald', sans-serif; font-size: 3.2rem; font-weight: 700; line-height: 0.9; flex-shrink: 0; }
+  .zone-range { font-family: 'Space Mono', monospace; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--smoke); margin-bottom: 4px; }
+  .zone-name { font-family: 'Oswald', sans-serif; font-size: 1.05rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; }
+  .zone-1 .zone-head { background: rgba(240,180,41,0.1); } .zone-1 .zone-num, .zone-1 .zone-name { color: var(--gold); }
+  .zone-2 .zone-head { background: rgba(212,82,26,0.12); } .zone-2 .zone-num, .zone-2 .zone-name { color: var(--ember); }
+  .zone-3 .zone-head { background: rgba(94,122,90,0.12); } .zone-3 .zone-num, .zone-3 .zone-name { color: var(--sage); }
+  .zone-body { padding: 18px 22px; }
+  .zone-body p { font-size: 0.92rem; color: var(--smoke); margin-bottom: 14px; line-height: 1.65; }
+  .zone-tips { list-style: none; }
+  .zone-tips li { font-size: 0.88rem; color: var(--parchment); padding: 5px 0; border-bottom: 1px solid rgba(255,255,255,0.04); display: flex; gap: 10px; align-items: flex-start; }
+  .zone-tips li:last-child { border: none; }
+  .zone-tips li::before { content: '›'; color: var(--flame); font-size: 1.1rem; line-height: 1.2; flex-shrink: 0; }
+  .fw-action { background: rgba(10,12,11,0.7); border: 1px solid rgba(212,82,26,0.2); padding: 48px; border-radius: 2px; }
+  .fw-action h3 { font-family: 'Oswald', sans-serif; font-size: 1.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 36px; color: var(--white); }
+  .steps-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+  .step { display: flex; gap: 18px; }
+  .step-n { font-family: 'Oswald', sans-serif; font-size: 2.8rem; font-weight: 700; color: rgba(212,82,26,0.25); line-height: 1; flex-shrink: 0; min-width: 44px; }
+  .step-title { font-family: 'Space Mono', monospace; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--flame); margin-bottom: 6px; }
+  .step p { font-size: 0.93rem; color: var(--smoke); line-height: 1.65; margin: 0; }
+
+  /* FIRE HUB */
+  #firehub { background: var(--black); }
+  .hub-intro { max-width: 600px; margin-bottom: 52px; }
+  .hub-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+  .hub-card { background: var(--forest); padding: 28px 30px; text-decoration: none; color: inherit; display: block; transition: background 0.2s; border-left: 2px solid transparent; position: relative; }
+  .hub-card:hover { background: var(--olive); border-left-color: var(--ember); }
+  .hub-card-arrow { position: absolute; top: 20px; right: 20px; color: var(--ember); font-size: 1.1rem; opacity: 0; transition: opacity 0.2s, transform 0.2s; }
+  .hub-card:hover .hub-card-arrow { opacity: 1; transform: translate(3px,-3px); }
+  .hub-card-cat { font-family: 'Space Mono', monospace; font-size: 0.58rem; text-transform: uppercase; letter-spacing: 0.14em; color: var(--ember); margin-bottom: 10px; }
+  .hub-card-title { font-family: 'Oswald', sans-serif; font-size: 1.1rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 8px; color: var(--white); }
+  .hub-card p { font-size: 0.88rem; color: var(--smoke); line-height: 1.6; margin: 0; }
+
+  /* CAREERS */
+  #careers { background: var(--forest); display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .careers-content p { margin-bottom: 16px; }
+  .perks { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 32px; margin-bottom: 36px; }
+  .perk { background: rgba(0,0,0,0.25); padding: 18px 20px; border-left: 2px solid var(--sage); }
+  .perk-icon { font-size: 1.4rem; margin-bottom: 6px; }
+  .perk-label { font-family: 'Space Mono', monospace; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--flame); margin-bottom: 4px; }
+  .perk p { font-size: 0.87rem; color: var(--smoke); margin: 0; line-height: 1.5; }
+  .careers-visual { position: relative; }
+  .careers-img-wrap { aspect-ratio: 3/4; overflow: hidden; border-radius: 2px; }
+  .careers-img-wrap img { width: 100%; height: 100%; object-fit: cover; filter: saturate(0.65) contrast(1.1); }
+  .careers-quote { position: absolute; bottom: -20px; left: -20px; background: var(--black); border: 1px solid rgba(212,82,26,0.3); border-left: 3px solid var(--ember); padding: 22px 26px; max-width: 300px; }
+  .careers-quote blockquote { font-style: italic; font-size: 0.98rem; color: var(--parchment); line-height: 1.65; margin-bottom: 12px; }
+  .careers-quote cite { font-family: 'Space Mono', monospace; font-size: 0.6rem; color: var(--flame); text-transform: uppercase; letter-spacing: 0.1em; font-style: normal; }
+
+  /* EMPLOYEE PORTAL */
+  #employees { background: var(--deep); }
+  .emp-intro { max-width: 580px; margin-bottom: 48px; }
+  .emp-banner { background: linear-gradient(120deg, var(--ember) 0%, #8a2800 100%); padding: 30px 40px; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; margin-bottom: 40px; }
+  .emp-banner h3 { font-family: 'Oswald', sans-serif; font-size: 1.5rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--white); margin-bottom: 4px; }
+  .emp-banner p { font-size: 0.95rem; color: rgba(255,255,255,0.8); margin: 0; }
+  .forms-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 2px; margin-bottom: 32px; }
+  .form-link { background: var(--forest); padding: 22px 26px; text-decoration: none; color: inherit; display: flex; align-items: center; gap: 16px; transition: background 0.2s; }
+  .form-link:hover { background: var(--olive); }
+  .form-link-icon { font-size: 1.6rem; flex-shrink: 0; width: 44px; height: 44px; background: rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center; }
+  .form-link-title { font-family: 'Oswald', sans-serif; font-size: 0.95rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--white); margin-bottom: 2px; }
+  .form-link-desc { font-size: 0.8rem; color: var(--smoke); margin: 0; line-height: 1.4; }
+  .form-link-arr { margin-left: auto; color: var(--ember); font-size: 1.1rem; flex-shrink: 0; }
+  .emp-note { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-left: 2px solid var(--sage); padding: 18px 22px; font-size: 0.9rem; color: var(--smoke); line-height: 1.65; }
+
+  /* CONTACT */
+  #contact { background: var(--forest); display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+  .contact-info p { margin-bottom: 12px; }
+  .citem { display: flex; gap: 14px; align-items: flex-start; margin-bottom: 16px; }
+  .citem-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 3px; }
+  .citem-label { font-family: 'Space Mono', monospace; font-size: 0.58rem; text-transform: uppercase; letter-spacing: 0.14em; color: var(--smoke); margin-bottom: 2px; }
+  .citem-val { color: var(--white); font-size: 0.98rem; color: var(--parchment); }
+  .social-row { display: flex; gap: 10px; margin-top: 28px; }
+  .social-btn { font-family: 'Space Mono', monospace; font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--smoke); border: 1px solid rgba(255,255,255,0.1); padding: 10px 16px; text-decoration: none; transition: all 0.2s; }
+  .social-btn:hover { border-color: var(--flame); color: var(--flame); }
+  .contact-form { display: flex; flex-direction: column; gap: 14px; }
+  .form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .fg { display: flex; flex-direction: column; gap: 5px; }
+  label { font-family: 'Space Mono', monospace; font-size: 0.58rem; text-transform: uppercase; letter-spacing: 0.14em; color: var(--flame); }
+  input, select, textarea { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.09); padding: 12px 14px; color: var(--cream); font-family: 'Source Serif 4', serif; font-size: 1rem; outline: none; transition: border-color 0.2s; border-radius: 1px; }
+  input:focus, select:focus, textarea:focus { border-color: var(--flame); }
+  select option { background: var(--forest); color: var(--cream); }
+  textarea { min-height: 120px; resize: vertical; }
+  .form-submit { background: var(--ember); color: var(--white); border: none; padding: 14px 30px; font-family: 'Space Mono', monospace; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.12em; cursor: pointer; transition: background 0.2s; width: fit-content; border-radius: 1px; }
+  .form-submit:hover { background: var(--flame); }
+
+  /* FOOTER */
+  footer { background: #050706; padding: 36px 80px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; border-top: 1px solid rgba(255,255,255,0.04); }
+  .footer-logo { font-family: 'Oswald', sans-serif; font-size: 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--white); }
+  .footer-logo span { color: var(--ember); }
+  .footer-tagline { font-family: 'Space Mono', monospace; font-size: 0.56rem; color: var(--smoke); text-transform: uppercase; letter-spacing: 0.14em; margin-top: 4px; }
+  .footer-links { display: flex; gap: 20px; }
+  .footer-links a { font-family: 'Space Mono', monospace; font-size: 0.58rem; color: var(--smoke); text-decoration: none; text-transform: uppercase; letter-spacing: 0.1em; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--flame); }
+  .footer-copy { font-family: 'Space Mono', monospace; font-size: 0.56rem; color: rgba(154,146,130,0.5); text-transform: uppercase; letter-spacing: 0.1em; }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+  .fade-up { opacity: 0; transform: translateY(22px); transition: opacity 0.65s ease, transform 0.65s ease; }
+  .fade-up.visible { opacity: 1; transform: none; }
+
+  /* RESPONSIVE */
+  @media (max-width: 960px) {
+    section { padding: 72px 28px; }
+    nav { padding: 0 24px; }
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    #home { padding: 110px 28px 170px; }
+    .hero-stats { grid-template-columns: repeat(2,1fr); }
+    #about, #careers, #contact { grid-template-columns: 1fr; gap: 44px; }
+    .about-img-wrap::before { display: none; }
+    .about-img-frame, .careers-img-wrap { aspect-ratio: 4/3; }
+    .careers-quote { position: static; margin-top: 16px; max-width: 100%; }
+    .zones-grid, .services-grid, .hub-grid { grid-template-columns: 1fr; }
+    .steps-grid { grid-template-columns: 1fr; }
+    .form-row-2 { grid-template-columns: 1fr; }
+    footer { flex-direction: column; align-items: flex-start; gap: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">
+    <div class="nav-logo-ring">🔥</div>
+    <div class="nav-logo">
+      Cedar Ridge LLC
+      <small>Wildland Fire Engines</small>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#firewise">FireWise</a></li>
+    <li><a href="#firehub">Fire Info Hub</a></li>
+    <li><a href="#careers">Join Us</a></li>
+    <li><a href="#employees">Employee Portal</a></li>
+  </ul>
+  <a href="tel:3609166407" class="nav-phone">📞 (360) 916-6407</a>
+  <div class="hamburger"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">
+      <div class="hero-eyebrow-line"></div>
+      <span class="hero-eyebrow-text">Wildland Fire Protection Service · Pacific Northwest</span>
+    </div>
+    <h1 class="hero-title">
+      On the Front<br>
+      <em>Lines of Fire.</em>
+    </h1>
+    <p class="hero-sub">Cedar Ridge LLC deploys professional wildland fire engines and trained crews when fire strikes — and helps communities prepare before it does. Always open. Always ready.</p>
+    <div class="hero-btns">
+      <a href="#services" class="btn-primary">Our Services</a>
+      <a href="#firewise" class="btn-outline">FireWise Education</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="hero-stat-num">24/7</div>
+      <div class="hero-stat-label">Always Open & Ready</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">21+</div>
+      <div class="hero-stat-label">Days Deployed Per Assignment</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">3</div>
+      <div class="hero-stat-label">Defensible Space Zones</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">NEW</div>
+      <div class="hero-stat-label">FireWise Prep Services</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-img-wrap fade-up">
+    <div class="about-img-frame">
+      <img src="images/crew-on-engine.jpg" alt="Cedar Ridge wildland fire crew">
+    </div>
+    <div class="about-badge">
+      <div class="about-badge-name">Amanda</div>
+      <div class="about-badge-title">Owner & Founder · Cedar Ridge LLC</div>
+    </div>
+  </div>
+  <div class="about-content fade-up">
+    <div class="eyebrow"><div class="eyebrow-line"></div><span class="eyebrow-text">About Us</span></div>
+    <h2 class="stitle">Built to Fight.<br><em>Ready to Protect.</em></h2>
+    <div class="divider"></div>
+    <p>Cedar Ridge LLC is a wildland fire engine company based in the Pacific Northwest. Founded by Amanda, we deploy professional engines and trained crews to active wildland fire incidents — going where we're needed, staying as long as it takes. From 21-day assignments on fires like the Labor Mountain Fire to the front lines of fire season, our team shows up ready.</p>
+    <p>Now we're expanding our mission with <strong>FireWise services</strong> — bringing our firsthand fire knowledge directly to landowners and communities to help them prepare their properties <em>before</em> fire arrives. Nobody understands wildfire risk better than the people who fight it.</p>
+    <div class="about-feats">
+      <div class="about-feat">
+        <div class="about-feat-icon">🚒</div>
+        <div class="about-feat-label">Fire Engine Deployment</div>
+        <p>Professional wildland fire engines dispatched to active incidents</p>
+      </div>
+      <div class="about-feat">
+        <div class="about-feat-icon">👷</div>
+        <div class="about-feat-label">Trained Crews</div>
+        <p>Skilled wildland firefighters ready for extended assignments</p>
+      </div>
+      <div class="about-feat">
+        <div class="about-feat-icon">🔥</div>
+        <div class="about-feat-label">FireWise Prep (New)</div>
+        <p>Property mitigation and defensible space — prevention from the pros</p>
+      </div>
+      <div class="about-feat">
+        <div class="about-feat-icon">📞</div>
+        <div class="about-feat-label">Always Open</div>
+        <p>Available 24/7 — fire doesn't keep business hours, and neither do we</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="services-intro fade-up">
+    <div class="eyebrow"><div class="eyebrow-line"></div><span class="eyebrow-text">What We Do</span></div>
+    <h2 class="stitle">Our <em>Services</em></h2>
+    <div class="divider"></div>
+    <p>From fighting active wildland fires with professional engines and crews, to helping homeowners and communities prepare their land — Cedar Ridge LLC covers the full spectrum of wildfire response and prevention.</p>
+  </div>
+  <div class="services-grid">
+    <div class="scard fade-up">
+      <div class="scard-img">
+        <img src="images/crew-smoke-hose.jpg" alt="Wildland fire engines">
+        <span class="stag tag-core">Core Service</span>
+      </div>
+      <div class="scard-body">
+        <div class="scard-icon">🚒</div>
+        <div class="scard-title">Wildland Fire Engine Deployment</div>
+        <p>We deploy professional wildland fire engines and trained crews to active fire incidents. From initial attack to extended support, our team operates where it counts most.</p>
+      </div>
+    </div>
+    <div class="scard fade-up">
+      <div class="scard-img">
+        <img src="images/crew-engines-yard.jpg" alt="Fire crew support">
+        <span class="stag tag-core">Core Service</span>
+      </div>
+      <div class="scard-body">
+        <div class="scard-icon">👷</div>
+        <div class="scard-title">Crew Support & Fire Operations</div>
+        <p>Extended incident support including crew staffing, logistics, and coordination for wildland fire assignments throughout the Pacific Northwest and beyond.</p>
+      </div>
+    </div>
+    <div class="scard fade-up">
+      <div class="scard-img">
+        <img src="images/crew-fireline.jpg" alt="FireWise land preparation">
+        <span class="stag tag-new">New Expansion</span>
+      </div>
+      <div class="scard-body">
+        <div class="scard-icon">🌿</div>
+        <div class="scard-title">FireWise Land Preparation</div>
+        <p>Hands-on property assessment and defensible space creation by people who actually fight wildfires. We know exactly what fire looks for — and how to deny it.</p>
+      </div>
+    </div>
+    <div class="scard fade-up">
+      <div class="scard-img">
+        <img src="images/crew-summit.jpg" alt="Property risk assessment">
+        <span class="stag tag-new">New Expansion</span>
+      </div>
+      <div class="scard-body">
+        <div class="scard-icon">📋</div>
+        <div class="scard-title">Property Risk Assessment</div>
+        <p>A comprehensive evaluation of your land's wildfire vulnerability, with a prioritized action plan developed from real field experience — not just a checklist.</p>
+      </div>
+    </div>
+    <div class="scard fade-up">
+      <div class="scard-img">
+        <img src="images/crew-waterfall.jpg" alt="Neighborhood FireWise programs">
+        <span class="stag tag-comm">Community</span>
+      </div>
+      <div class="scard-body">
+        <div class="scard-icon">🏘️</div>
+        <div class="scard-title">Neighborhood FireWise Programs</div>
+        <p>We work with neighborhoods and HOAs to develop community-wide fire preparedness — because a protected neighborhood is stronger than one protected home.</p>
+      </div>
+    </div>
+    <div class="scard fade-up">
+      <div class="scard-img">
+        <img src="images/crew-engines-yard.jpg" alt="Community education workshops">
+        <span class="stag tag-comm">Education</span>
+      </div>
+      <div class="scard-body">
+        <div class="scard-icon">📚</div>
+        <div class="scard-title">Community Education & Workshops</div>
+        <p>Interactive sessions on wildfire behavior, risk, and practical preparation — straight from people who go to work when the fire alarms sound.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FIREWISE EDUCATION -->
+<section id="firewise">
+  <div class="fw-intro fade-up">
+    <div class="eyebrow"><div class="eyebrow-line"></div><span class="eyebrow-text">FireWise Education</span></div>
+    <h2 class="stitle">What Is <em>FireWise?</em></h2>
+    <div class="divider"></div>
+    <p>FireWise is a nationally recognized NFPA program that teaches landowners how to reduce their wildfire risk through practical preparation. Cedar Ridge LLC is now offering FireWise services — because our crews have seen firsthand what makes properties survive and what makes them burn. This knowledge belongs in the community.</p>
+  </div>
+
+  <div class="fade-up" style="margin-bottom: 32px;">
+    <div class="eyebrow"><div class="eyebrow-line"></div><span class="eyebrow-text">The Three Defensible Space Zones</span></div>
+    <p style="color: var(--smoke); font-size: 0.98rem; max-width: 680px; margin-top: 10px;">Defensible space is the buffer between your home and surrounding vegetation. Organized into three zones, it's the single most effective thing a homeowner can do to improve wildfire survivability.</p>
+  </div>
+
+  <div class="zones-grid">
+    <div class="zone-card zone-1 fade-up">
+      <div class="zone-head">
+        <div class="zone-num">01</div>
+        <div><div class="zone-range">0 – 5 Feet</div><div class="zone-name">Immediate Zone</div></div>
+      </div>
+      <div class="zone-body">
+        <p>The area directly against your home — the most critical. This is where embers land first. Make it as non-combustible as possible.</p>
+        <ul class="zone-tips">
+          <li>Non-combustible decking, fencing, and siding materials</li>
+          <li>Remove all dead plants, leaves, and pine needles</li>
+          <li>Clean gutters and roof surfaces of debris</li>
+          <li>Replace wood mulch with gravel or rock</li>
+          <li>No combustible storage under decks or porches</li>
+        </ul>
+      </div>
+    </div>
+    <div class="zone-card zone-2 fade-up">
+      <div class="zone-head">
+        <div class="zone-num">02</div>
+        <div><div class="zone-range">5 – 30 Feet</div><div class="zone-name">Intermediate Zone</div></div>
+      </div>
+      <div class="zone-body">
+        <p>A reduced-fuel buffer that slows fire and prevents it from "laddering" into tree canopies toward your home. Critical for survivability.</p>
+        <ul class="zone-tips">
+          <li>Islands of plants separated by non-combustible spacing</li>
+          <li>Mow grass to a maximum of 4 inches tall</li>
+          <li>Remove lower tree limbs up to 6–10 feet off the ground</li>
+          <li>Prune shrubs and maintain proper plant spacing</li>
+          <li>Remove all dead vegetation consistently</li>
+        </ul>
+      </div>
+    </div>
+    <div class="zone-card zone-3 fade-up">
+      <div class="zone-head">
+        <div class="zone-num">03</div>
+        <div><div class="zone-range">30 – 100 Feet</div><div class="zone-name">Outer Zone</div></div>
+      </div>
+      <div class="zone-body">
+        <p>Reduce the fuel load at a wider scale so any approaching fire has less intensity and momentum when it reaches your property.</p>
+        <ul class="zone-tips">
+          <li>Remove dead trees, snags, and wood debris</li>
+          <li>Space out trees and tall shrubs to reduce spread</li>
+          <li>Keep grass short during dry and fire seasons</li>
+          <li>Remove highly flammable plants (juniper, rosemary, etc.)</li>
+          <li>Coordinate with neighbors to extend mitigation</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="fw-action fade-up">
+    <h3>🔥 Your FireWise Action Plan — Start Here</h3>
+    <div class="steps-grid">
+      <div class="step"><div class="step-n">1</div><div><div class="step-title">Assess Your Risk</div><p>Walk your property and identify fuel sources — dead vegetation, wood piles, dense shrubs near structures, and combustible materials on decks and roofs.</p></div></div>
+      <div class="step"><div class="step-n">2</div><div><div class="step-title">Create Defensible Space</div><p>Work through all three zones starting with the immediate zone (0–5 ft). Clear debris and thin vegetation working outward from the structure.</p></div></div>
+      <div class="step"><div class="step-n">3</div><div><div class="step-title">Harden Your Home</div><p>Seal gaps and vents with ember-resistant mesh, replace combustible siding and decking where possible, and install multi-pane windows to resist radiant heat.</p></div></div>
+      <div class="step"><div class="step-n">4</div><div><div class="step-title">Prepare to Evacuate</div><p>Have a go-bag ready, know your evacuation routes, sign up for local emergency alerts, and have a family communication plan before fire season starts.</p></div></div>
+      <div class="step"><div class="step-n">5</div><div><div class="step-title">Maintain Year-Round</div><p>FireWise prep isn't a one-time project. Schedule seasonal maintenance — especially before dry seasons — to keep your defensible space effective.</p></div></div>
+      <div class="step"><div class="step-n">6</div><div><div class="step-title">Engage Your Neighbors</div><p>Fire doesn't stop at property lines. Encourage neighbors to prepare, and consider joining or starting a community FireWise program in your area.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FIRE INFO HUB -->
+<section id="firehub">
+  <div class="hub-intro fade-up">
+    <div class="eyebrow"><div class="eyebrow-line"></div><span class="eyebrow-text">Fire Information Hub</span></div>
+    <h2 class="stitle">One Stop for <em>Fire Info</em></h2>
+    <div class="divider"></div>
+    <p>We've gathered the most important fire safety, conditions, and resource links in one place — from current fire activity and air quality to federal programs and evacuation guidance. Bookmark this page.</p>
+  </div>
+  <div class="hub-grid">
+    <a href="https://www.nfpa.org/firewise" target="_blank" class="hub-card fade-up"><div class="hub-card-arrow">↗</div><div class="hub-card-cat">🏠 National Program</div><div class="hub-card-title">NFPA FireWise USA</div><p>The official national FireWise program — resources, community programs, and how to get your neighborhood certified.</p></a>
+    <a href="https://www.nifc.gov" target="_blank" class="hub-card fade-up"><div class="hub-card-arrow">↗</div><div class="hub-card-cat">📊 Current Conditions</div><div class="hub-card-title">Nat'l Interagency Fire Center</div><p>Current fire activity, national statistics, predictive services, and fire weather forecasts from NIFC.</p></a>
+    <a href="https://inciweb.wildfire.gov" target="_blank" class="hub-card fade-up"><div class="hub-card-arrow">↗</div><div class="hub-card-cat">🔥 Active Fires</div><div class="hub-card-title">InciWeb — Active Incidents</div><p>The national incident information system for current wildfires — maps, news releases, and closure information.</p></a>
+    <a href="https://www.weather.gov/fire/" target="_blank" class="hub-card fade-up"><div class="hub-card-arrow">↗</div><div class="hub-card-cat">🌤️ Fire Weather</div><div class="hub-card-title">NWS Fire Weather</div><p>National Weather Service fire weather forecasts, red flag warnings, and critical fire weather outlooks by region.</p></a>
+    <a href="https://www.airnow.gov" target="_blank" class="hub-card fade-up"><div class="hub-card-arrow">↗</div><div class="hub-card-cat">💨 Air Quality</div><div class="hub-card-title">AirNow — Air Quality Index</div><p>Real-time air quality maps and wildfire smoke forecasts — critical for health decisions during and after fires.</p></a>
+    <a href="https://www.ready.gov/wildfires" target="_blank" class="hub-card fade-up"><div class="hub-card-arrow">↗</div><div class="hub-card-cat">🚨 Emergency Prep</div><div class="hub-card-title">Ready.gov — Wildfires</div><p>FEMA's official wildfire preparedness guide covering evacuation, supply kits, and recovery resources.</p></a>
+    <a href="https://www.fs.usda.gov/managing-land/fire" target="_blank" class="hub-card fade-up"><div class="hub-card-arrow">↗</div><div class="hub-card-cat">🌲 Federal Resource</div><div class="hub-card-title">USDA Forest Service — Fire</div><p>Fire management resources, land stewardship programs, and national fire statistics.</p></a>
+    <a href="https://www.mtbs.gov" target="_blank" class="hub-card fade-up"><div class="hub-card-arrow">↗</div><div class="hub-card-cat">🗺️ Fire History</div><div class="hub-card-title">Monitoring Burn Severity</div><p>Historic fire perimeters and burn severity data across the US — understand your local fire history.</p></a>
+    <a href="https://www.evacuation.com" target="_blank" class="hub-card fade-up"><div class="hub-card-arrow">↗</div><div class="hub-card-cat">🚗 Evacuation</div><div class="hub-card-title">Evacuation Info & Alerts</div><p>Track evacuation orders, warnings, and road closures. Sign up for local alerts when your area is affected.</p></a>
+  </div>
+</section>
+
+<!-- CAREERS -->
+<section id="careers">
+  <div class="careers-content fade-up">
+    <div class="eyebrow"><div class="eyebrow-line"></div><span class="eyebrow-text">Join Our Team</span></div>
+    <h2 class="stitle">Work That <em>Matters.</em></h2>
+    <div class="divider"></div>
+    <p>Cedar Ridge LLC is growing — and we're looking for people who want to do real, meaningful work. Whether you're an experienced wildland firefighter or someone looking to break into the field, we want to hear from you.</p>
+    <p>Our team spent <strong>21 days on the Labor Mountain Fire</strong> last season. That's the kind of crew you'd be joining — people who show up, stay the course, and have each other's backs in the field.</p>
+    <div class="perks">
+      <div class="perk"><div class="perk-icon">🔥</div><div class="perk-label">Real Fire Work</div><p>Deploy to active wildland fire incidents across the region.</p></div>
+      <div class="perk"><div class="perk-icon">📚</div><div class="perk-label">Training Provided</div><p>We train you on FireWise methods, equipment, and safety protocols.</p></div>
+      <div class="perk"><div class="perk-icon">📈</div><div class="perk-label">Growing Company</div><p>Get in early as we expand into FireWise prevention services.</p></div>
+      <div class="perk"><div class="perk-icon">🤝</div><div class="perk-label">Tight-Knit Team</div><p>Small crew, real culture. We look out for each other on and off the line.</p></div>
+    </div>
+    <a href="#contact" class="btn-primary">Apply / Get In Touch</a>
+  </div>
+  <div class="careers-visual fade-up">
+    <div class="careers-img-wrap">
+      <img src="images/crew-summit.jpg" alt="Cedar Ridge crew on assignment">
+    </div>
+    <div class="careers-quote">
+      <blockquote>"We're expanding into FireWise because nobody understands wildfire risk better than the people who fight it — and that knowledge belongs in the community."</blockquote>
+      <cite>— Amanda, Owner & Founder</cite>
+    </div>
+  </div>
+</section>
+
+<!-- EMPLOYEE PORTAL -->
+<section id="employees">
+  <div class="emp-intro fade-up">
+    <div class="eyebrow"><div class="eyebrow-line"></div><span class="eyebrow-text">Team Resources</span></div>
+    <h2 class="stitle">Employee <em>Portal</em></h2>
+    <div class="divider"></div>
+    <p>Quick access to all the forms and resources you need as a Cedar Ridge team member. Bookmark this page for fast field access.</p>
+  </div>
+  <div class="emp-banner fade-up">
+    <div>
+      <h3>📋 Electronic Forms Center</h3>
+      <p>All employee forms available digitally — complete and submit without paperwork.</p>
+    </div>
+    <a href="tel:3609166407" class="btn-outline">📞 Call Amanda: (360) 916-6407</a>
+  </div>
+  <div class="forms-grid">
+    <a href="#" class="form-link fade-up"><div class="form-link-icon">🗓️</div><div><div class="form-link-title">Timesheet / Hours Log</div><p class="form-link-desc">Log daily hours and submit weekly timesheets for payroll.</p></div><div class="form-link-arr">→</div></a>
+    <a href="#" class="form-link fade-up"><div class="form-link-icon">🏖️</div><div><div class="form-link-title">Time Off Request</div><p class="form-link-desc">Request vacation, personal, or sick leave in advance.</p></div><div class="form-link-arr">→</div></a>
+    <a href="#" class="form-link fade-up"><div class="form-link-icon">🚑</div><div><div class="form-link-title">Incident / Injury Report</div><p class="form-link-desc">Report workplace incidents, injuries, or near-misses immediately.</p></div><div class="form-link-arr">→</div></a>
+    <a href="#" class="form-link fade-up"><div class="form-link-icon">🚒</div><div><div class="form-link-title">Vehicle & Engine Log</div><p class="form-link-desc">Log vehicle use, mileage, and engine condition checks.</p></div><div class="form-link-arr">→</div></a>
+    <a href="#" class="form-link fade-up"><div class="form-link-icon">💰</div><div><div class="form-link-title">Expense Reimbursement</div><p class="form-link-desc">Submit work-related expenses with receipts for reimbursement.</p></div><div class="form-link-arr">→</div></a>
+    <a href="#" class="form-link fade-up"><div class="form-link-icon">📋</div><div><div class="form-link-title">Job Site Checklist</div><p class="form-link-desc">Pre-work safety and task checklists for each assignment.</p></div><div class="form-link-arr">→</div></a>
+    <a href="#" class="form-link fade-up"><div class="form-link-icon">🌿</div><div><div class="form-link-title">FireWise Assessment Form</div><p class="form-link-desc">Property evaluation form for FireWise client consultations.</p></div><div class="form-link-arr">→</div></a>
+    <a href="#" class="form-link fade-up"><div class="form-link-icon">👤</div><div><div class="form-link-title">HR & Onboarding Docs</div><p class="form-link-desc">New hire paperwork, W-4, direct deposit, and policy acknowledgments.</p></div><div class="form-link-arr">→</div></a>
+  </div>
+  <div class="emp-note fade-up">
+    📌 <strong>Note for employees:</strong> Links above will be updated by Amanda with official form URLs. If you have trouble accessing any form or need a paper copy, call <strong>(360) 916-6407</strong>. Always keep a copy of submitted forms for your records.
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-info fade-up">
+    <div class="eyebrow"><div class="eyebrow-line"></div><span class="eyebrow-text">Get In Touch</span></div>
+    <h2 class="stitle">Let's <em>Talk.</em></h2>
+    <div class="divider"></div>
+    <p style="margin-bottom: 32px;">Whether you're a homeowner interested in FireWise prep, a landowner wanting an assessment, or someone who wants to join the crew — we'd love to hear from you.</p>
+    <div class="citem"><div class="citem-icon">📞</div><div><div class="citem-label">Phone</div><div class="citem-val"><a href="tel:3609166407" style="color:inherit;text-decoration:none;">(360) 916-6407</a></div></div></div>
+    <div class="citem"><div class="citem-icon">🕐</div><div><div class="citem-label">Availability</div><div class="citem-val">Always Open — 24/7</div></div></div>
+    <div class="citem"><div class="citem-icon">📍</div><div><div class="citem-label">Service Area</div><div class="citem-val">Pacific Northwest & Beyond</div></div></div>
+    <div class="citem"><div class="citem-icon">📧</div><div><div class="citem-label">Email</div><div class="citem-val">[<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="631a0c161123060e020a0f4d000c0e">[email&#160;protected]</a>]</div></div></div>
+    <div class="social-row">
+      <a href="https://www.facebook.com/cedarridgellc" target="_blank" class="social-btn">📘 Facebook</a>
+    </div>
+  </div>
+  <div class="fade-up">
+    <form class="contact-form" onsubmit="handleSubmit(event)">
+      <div class="form-row-2">
+        <div class="fg"><label for="fn">First Name</label><input type="text" id="fn" placeholder="Jane"></div>
+        <div class="fg"><label for="ln">Last Name</label><input type="text" id="ln" placeholder="Doe"></div>
+      </div>
+      <div class="fg"><label for="em">Email Address</label><input type="email" id="em" placeholder="jane@example.com"></div>
+      <div class="fg"><label for="ph">Phone Number</label><input type="tel" id="ph" placeholder="(555) 000-0000"></div>
+      <div class="fg">
+        <label for="re">I'm reaching out about…</label>
+        <select id="re">
+          <option value="">Select a reason</option>
+          <option>FireWise prep for my property</option>
+          <option>Property risk assessment</option>
+          <option>Community / neighborhood program</option>
+          <option>Wildland fire engine services</option>
+          <option>Joining the team</option>
+          <option>General inquiry</option>
+        </select>
+      </div>
+      <div class="fg"><label for="msg">Message</label><textarea id="msg" placeholder="Tell us about your property, your goals, or any questions you have…"></textarea></div>
+      <button type="submit" class="form-submit">Send Message →</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-logo">Cedar <span>Ridge</span> LLC</div>
+    <div class="footer-tagline">Wildland Fire Engines · FireWise Services · Pacific Northwest</div>
+  </div>
+  <div class="footer-links">
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#firewise">FireWise</a>
+    <a href="#firehub">Fire Hub</a>
+    <a href="#careers">Join Us</a>
+    <a href="#employees">Employees</a>
+  </div>
+  <div class="footer-copy">© 2025 Cedar Ridge LLC · All Rights Reserved</div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('.form-submit');
+    btn.textContent = "✓ Sent — We'll be in touch!";
+    btn.style.background = '#2a7a3a';
+    setTimeout(() => { btn.textContent = 'Send Message →'; btn.style.background = ''; }, 4000);
+  }
+
+  document.querySelector('.hamburger')?.addEventListener('click', function() {
+    const nl = document.querySelector('.nav-links');
+    const open = nl.style.display === 'flex';
+    nl.style.cssText = open ? '
