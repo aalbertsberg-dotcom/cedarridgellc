@@ -44,10 +44,17 @@
   }
   .nav-brand { display: flex; align-items: center; gap: 14px; }
   .nav-logo-ring {
-    width: 42px; height: 42px;
-    border: 2px solid var(--ember); border-radius: 50%;
+    width: 46px; height: 46px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+    background: var(--white);
     display: flex; align-items: center; justify-content: center;
-    font-size: 1.2rem; flex-shrink: 0;
+    box-shadow: 0 0 0 2px var(--ember);
+  }
+  .nav-logo-ring img {
+    width: 90%; height: 90%;
+    object-fit: contain;
   }
   .nav-logo {
     font-family: 'Oswald', sans-serif;
@@ -354,7 +361,7 @@
 <!-- NAV -->
 <nav>
   <div class="nav-brand">
-    <div class="nav-logo-ring">🔥</div>
+    <div class="nav-logo-ring"><img src="images/logo.jpg" alt="Cedar Ridge LLC Logo"></div>
     <div class="nav-logo">
       Cedar Ridge LLC
       <small>Wildland Fire Engines</small>
@@ -375,6 +382,7 @@
 <!-- HERO -->
 <section id="home">
   <div class="hero-inner">
+    <img src="images/logo.jpg" alt="Cedar Ridge LLC" style="width:110px;height:110px;object-fit:contain;background:rgba(255,255,255,0.92);border-radius:50%;padding:6px;box-shadow:0 0 0 3px var(--ember), 0 8px 32px rgba(0,0,0,0.5);margin-bottom:28px;display:block;animation:fadeUp 0.7s ease both;">
     <div class="hero-eyebrow">
       <div class="hero-eyebrow-line"></div>
       <span class="hero-eyebrow-text">Wildland Fire Protection Service · Pacific Northwest</span>
@@ -416,8 +424,13 @@
       <img src="images/crew-on-engine.jpg" alt="Cedar Ridge wildland fire crew">
     </div>
     <div class="about-badge">
-      <div class="about-badge-name">Amanda</div>
-      <div class="about-badge-title">Owner & Founder · Cedar Ridge LLC</div>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <img src="images/logo.jpg" alt="Cedar Ridge Logo" style="width:44px;height:44px;object-fit:contain;background:white;border-radius:50%;padding:3px;flex-shrink:0;">
+        <div>
+          <div class="about-badge-name">Amanda</div>
+          <div class="about-badge-title">Owner & Founder · Cedar Ridge LLC</div>
+        </div>
+      </div>
     </div>
   </div>
   <div class="about-content fade-up">
@@ -649,6 +662,7 @@
       <img src="images/crew-summit.jpg" alt="Cedar Ridge crew on assignment">
     </div>
     <div class="careers-quote">
+      <img src="images/logo.jpg" alt="" style="width:36px;height:36px;object-fit:contain;background:white;border-radius:50%;padding:2px;margin-bottom:12px;opacity:0.85;">
       <blockquote>"We're expanding into FireWise because nobody understands wildfire risk better than the people who fight it — and that knowledge belongs in the community."</blockquote>
       <cite>— Amanda, Owner & Founder</cite>
     </div>
@@ -728,9 +742,12 @@
 
 <!-- FOOTER -->
 <footer>
-  <div>
-    <div class="footer-logo">Cedar <span>Ridge</span> LLC</div>
-    <div class="footer-tagline">Wildland Fire Engines · FireWise Services · Pacific Northwest</div>
+  <div style="display:flex;align-items:center;gap:14px;">
+    <img src="images/logo.jpg" alt="Cedar Ridge LLC" style="width:48px;height:48px;object-fit:contain;background:white;border-radius:50%;padding:3px;">
+    <div>
+      <div class="footer-logo">Cedar <span>Ridge</span> LLC</div>
+      <div class="footer-tagline">Wildland Fire Engines · FireWise Services · Pacific Northwest</div>
+    </div>
   </div>
   <div class="footer-links">
     <a href="#about">About</a>
