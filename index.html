@@ -4,7 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Cedar Ridge LLC | Wildland Fire Engines & FireWise Services</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="icon" type="image/jpeg" href="images/logo.jpg">
+<link rel="shortcut icon" type="image/jpeg" href="images/logo.jpg">
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;600;700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -334,8 +335,9 @@
 
   /* ANIMATIONS */
   @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
-  .fade-up { opacity: 0; transform: translateY(22px); transition: opacity 0.65s ease, transform 0.65s ease; }
-  .fade-up.visible { opacity: 1; transform: none; }
+  .fade-up { opacity: 1; transform: none; transition: opacity 0.65s ease, transform 0.65s ease; }
+  .js-ready .fade-up { opacity: 0; transform: translateY(22px); }
+  .js-ready .fade-up.visible { opacity: 1; transform: none; }
 
   /* RESPONSIVE */
   @media (max-width: 960px) {
@@ -761,23 +763,21 @@
 </footer>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  // Scroll reveal with fallback — ensures content is never permanently hidden
-  const fadeEls = document.querySelectorAll('.fade-up');
+  // Add js-ready class so fade-up animations only apply when JS works
+  document.documentElement.classList.add('js-ready');
 
+  // Scroll reveal
+  const fadeEls = document.querySelectorAll('.fade-up');
   if ('IntersectionObserver' in window) {
     const obs = new IntersectionObserver(entries => {
       entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.05, rootMargin: '0px 0px -40px 0px' });
+    }, { threshold: 0.05, rootMargin: '0px 0px -20px 0px' });
     fadeEls.forEach(el => obs.observe(el));
   } else {
-    // Fallback: just show everything
     fadeEls.forEach(el => el.classList.add('visible'));
   }
-
-  // Safety net: after 1.5s, force-show anything still hidden
-  setTimeout(() => {
-    fadeEls.forEach(el => el.classList.add('visible'));
-  }, 1500);
+  // Hard fallback — reveal everything after 800ms no matter what
+  setTimeout(() => fadeEls.forEach(el => el.classList.add('visible')), 800);
 
   function handleSubmit(e) {
     e.preventDefault();
